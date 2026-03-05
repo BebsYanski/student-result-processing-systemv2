@@ -92,7 +92,7 @@ fn main() {
         }
     }
 
-    display_report(&students);
+    display_report2(&students);
 }
 
 fn calculate_total(total: i32, score: i32) -> i32 {
@@ -141,7 +141,27 @@ fn display_report(students: &Vec<Student>) {
     }
 }
 
+fn display_report2(students: &Vec<Student>) {
+    println!("\n\n**********Student Report**********\n");
+    println!("Total number of students: {}", students.len());
+    println!("ID  | Name       | Age | Subjects   | Total Score | Average    | Grade    \n");
+    for student in students {
+        println!(
+            "{:<3} | {:<10} | {:<3} | {:<10} | {:<11} | {:<10.2} | {:<10}",
+            students.iter().position(|x| x == student).unwrap() + 1,
+            student.name,
+            student.age,
+            student.subjects,
+            student.total_score,
+            student.average,
+            student.grade
+        );
+        println!("\n---------------------------------------\n")
+    }
+}
+
 // Structure
+#[derive(PartialEq)]
 struct Student {
     name: String,
     age: u8,
